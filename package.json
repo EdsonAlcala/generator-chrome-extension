@@ -1,0 +1,28 @@
+{
+  "name": "generator-es6-gulp-angular",
+  "version": "0.0.1",
+  "description": "Angular ES6 Gulp Generator that uses latest es6 features with components, gulp and webpack to bundle.",
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "edsonalcala",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "gulp": "^3.9.1",
+    "underscore.string": "^3.3.4",
+    "yeoman-generator": "^0.24.1",
+    "yosay": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.5.3",
+    "yeoman-assert": "^2.2.1"
+  }
+}
