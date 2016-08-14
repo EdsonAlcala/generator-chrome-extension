@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 import uglify from 'gulp-uglify';
 import babel from 'gulp-babel';
+import path from 'path';
 
 let root = 'src';
 
