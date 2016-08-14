@@ -19,7 +19,7 @@ module.exports = yeoman.Base.extend({
 
     // say hello
     this.log(yosay(
-      'Welcome to the amazing ' + chalk.red('ES6-Gulp-Angular') + ' generator! version.' + this.pkg.version
+      'Welcome to the amazing ' + chalk.red('Chrome Extension') + ' generator! version.' + this.pkg.version
     ));
 
     return this.prompt(prompts.main)
@@ -41,27 +41,15 @@ module.exports = yeoman.Base.extend({
       this.copy('package.json', 'package.json');
 
       // app files
-      this.copy('gulpfile.babel.js', 'gulpfile.babel.js');
-      this.copy('webpack.config.js', 'webpack.config.js');
-      this.copy('webpack.dev.config.js', 'webpack.dev.config.js');
-      this.copy('webpack.dist.config.js', 'webpack.dist.config.js');
+      this.copy('gulpfile.babel.js', 'gulpfile.babel.js');     
 
       // other files            
       this.directory('src', 'src');
-      //this.directory('generator', 'generator');
-      this.directory('www', 'www');
 
-      // Copy all generator files      
-      this.generadorFolder = 'generator/component';
-      this.mkdir(this.generadorFolder);
-      this.fs.copy(
-        this.templatePath(this.generadorFolder + '/*.*'),
-        this.generadorFolder
-      );
+      this.directory('dist', 'dist');    
 
       // dot files
       this.copy('babelrc', '.babelrc');
-      this.copy('bowerrc', '.bowerrc');
       this.copy('eslintignore', '.eslintignore');
       this.copy('eslintrc', '.eslintrc');
       this.copy('gitignore', '.gitignore');
@@ -69,10 +57,10 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
-    // install npm, bower and save plugins/platforms
-    // this.installDependencies({
-    //   npm: true
-    // });
+    //install npm, bower and save plugins/platforms
+    this.installDependencies({
+      npm: true
+    });
   },
 
   end: function () {

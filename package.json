@@ -1,7 +1,7 @@
 {
-  "name": "generator-es6-gulp-angular",
+  "name": "generator-chrome-extension",
   "version": "0.0.1",
-  "description": "Angular ES6 Gulp Generator that uses latest es6 features with components, gulp and webpack to bundle.",
+  "description": "Chrome extension generator that uses latest es6 features",
   "files": [
     "app"
   ],

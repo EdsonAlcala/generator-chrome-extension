@@ -1,0 +1,41 @@
+﻿{
+  "manifest_version": 2,
+  "name": "Youtube Mp3 Pro",
+  "short_name": "Youtube Mp3 Pro",
+  "version": "1.0.4",
+  "description": "Download Youtube To Mp3 with a single click",
+  "author": "AuroraLabs",
+  "browser_action": {
+    "default_title": "Youtube Mp3 Pro",
+    "default_icon": "images/48x48.png"
+  },
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "tabs",
+    "cookies",
+    "downloads",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*"
+      ],    
+      "js": [
+        "scripts/script.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "icons": {
+    "16": "images/16x16.png",
+    "48": "images/48x48.png",
+    "128": "images/128x128.png"
+  }
+}
