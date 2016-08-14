@@ -2,6 +2,8 @@ var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
 var fs = require('fs');
+var mkdirp = require('mkdirp');
+var packageConfig = require('./sources/package-config.js');
 
 //local modules
 var utils = require('./sources/utils');
@@ -37,29 +39,43 @@ module.exports = yeoman.Base.extend({
 
     app: function () {
 
+       // prepare package.json
+       var packageJSON = packageConfig.packageJSON;
+     
+      // add other properties
+      packageJSON.name = utils.appPackageName(this.answers.appName);      
+      packageJSON.private = true;
+      
       // dependencies
-      this.copy('package.json', 'package.json');
+      this.write('package.json', JSON.stringify(packageJSON, null, 2));
 
       // app files
-      this.copy('gulpfile.babel.js', 'gulpfile.babel.js');     
+      this.copy('gulpfile.babel.js', 'gulpfile.babel.js');
 
       // other files            
       this.directory('src', 'src');
-
-      this.directory('dist', 'dist');    
 
       // dot files
       this.copy('babelrc', '.babelrc');
       this.copy('eslintignore', '.eslintignore');
       this.copy('eslintrc', '.eslintrc');
       this.copy('gitignore', '.gitignore');
+
+      //create empty folders
+      mkdirp.sync('dist');
+      mkdirp.sync('dist/js');
+      mkdirp.sync('dist/css');
+      mkdirp.sync('dist/fonts');
+      mkdirp.sync('dist/img');
+
     }
   },
 
   install: function () {
     //install npm, bower and save plugins/platforms
     this.installDependencies({
-      npm: true
+      npm: true,
+      bower: false
     });
   },
 

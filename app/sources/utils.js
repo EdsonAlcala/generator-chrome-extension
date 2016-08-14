@@ -10,5 +10,15 @@ module.exports = {
      */
     moduleName: function (userInput) {
         return strings.textToCamel(userInput);
-    }  
+    },
+            /**
+   * transforms user input from text to snake-case
+   * @param  {String} userInput free text
+   * @return {String}           snake-case string
+   */
+  appPackageName: function (userInput) {
+    var string = strings.textToCamel(userInput);
+    string = strings.camelToSnake(string);
+    return string;
+  }     
 };
