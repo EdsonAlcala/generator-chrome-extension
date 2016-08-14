@@ -5,6 +5,7 @@ import babel from 'gulp-babel';
 import path from 'path';
 import plumber from 'gulp-plumber';
 import sass from 'gulp-sass';
+import zip from 'gulp-zip';
 
 let root = 'src';
 let dist = 'dist';
@@ -62,7 +63,7 @@ gulp.task('build-js', () => {
     .pipe(babel({
       presets: ['es2015']
     }))
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest(paths.jsDist));
 });
 
@@ -98,9 +99,19 @@ gulp.task('copy-files', () => {
     .pipe(gulp.dest(dist));
 });
 
-gulp.task('watch', ['build']);
+gulp.task('watch', () => {
+  gulp.watch(paths.scss, ['copy-styles']);
+  gulp.watch(paths.js, ['build-js']);   
+  gulp.watch('gulpfile.babel.js', ['build']); 
+});
 
-gulp.task('default', ['watch']);
+gulp.task('zip', () => {
+    return gulp.src('dist/*')
+        .pipe(zip('dist.zip'))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('default', ['watch', 'lint', 'build']);
 
 
 

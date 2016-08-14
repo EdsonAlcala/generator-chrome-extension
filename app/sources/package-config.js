@@ -12,7 +12,8 @@ module.exports = {
             "gulp-babel": "^6.1.2",
             "gulp-eslint": "^3.0.1",
             "gulp-plumber": "^1.1.0",
-            "gulp-sass": "^2.3.2"
+            "gulp-sass": "^2.3.2",
+            "gulp-zip": "^3.2.0"
         }
     }
 };
