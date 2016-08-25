@@ -21,7 +21,7 @@ let resolveToDist = (glob = '') => {
 
 // map of all paths
 let paths = {
-    files: ['./manifest.json', 'icon.png'],
+    files: ['src/manifest.json', 'src/icon.png'],
     pages: resolveToApp('pages/*'),
     pagesDist: resolveToDist('pages'),
     css: resolveToApp('css/*.css'),
