@@ -4,7 +4,8 @@ var chalk = require('chalk');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 var packageConfig = require('./sources/package-config.js');
-
+var manifestConfig = require('./sources/manifest-config.js');
+ 
 //local modules
 var utils = require('./sources/utils');
 var prompts = require('./sources/prompts.js');
@@ -39,8 +40,8 @@ module.exports = yeoman.Base.extend({
 
     app: function () {
 
-       // prepare package.json
-       var packageJSON = packageConfig.packageJSON;
+      // prepare package.json
+      var packageJSON = packageConfig.packageJSON;
      
       // add other properties
       packageJSON.name = utils.appPackageName(this.answers.appName);      
@@ -48,6 +49,17 @@ module.exports = yeoman.Base.extend({
       
       // dependencies
       this.write('package.json', JSON.stringify(packageJSON, null, 2));
+
+      //prepare  manifest.json
+      var manifestJSON = manifestConfig.manifestJSON;
+
+      // add other properties
+      manifestJSON.name = utils.appPackageName(this.answers.appName);   
+      manifestJSON.short_name = utils.appPackageName(this.answers.appName); 
+      manifestJSON.description = this.answers.description; 
+      manifestJSON.author = this.answers.userName; 
+
+       this.write('src/manifest.json', JSON.stringify(manifestJSON, null, 2));
 
       // app files
       this.copy('gulpfile.babel.js', 'gulpfile.babel.js');
@@ -67,7 +79,12 @@ module.exports = yeoman.Base.extend({
       mkdirp.sync('dist/css');
       mkdirp.sync('dist/fonts');
       mkdirp.sync('dist/img');
+      mkdirp.sync('dist/pages');
 
+      //create empty folders
+      mkdirp.sync('src/css');
+      mkdirp.sync('src/fonts');  
+      mkdirp.sync('src/pages');  
     }
   },
 
